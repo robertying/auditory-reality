@@ -19,14 +19,17 @@ function App() {
         </Typography>
         <Typography component="ul">
           <li>
-            Use Tab key to select controls and use Space key to activate them.
+            Use the Tab key to select controls and use the Space key to activate
+            them.
           </li>
           <li>
-            Use Up Arrow key and Down Arrow key to cycle through sound source.
+            Use the Up Arrow key and Down Arrow key to cycle through sound
+            sources.
           </li>
-          <li>Use Enter key to select source to move around.</li>
+          <li>Use the Enter key to select source to move around.</li>
           <li>
-            Use Left Arrow key and Right Arrow key to change source position.
+            Use the Left Arrow key and Right Arrow key to change source
+            position.
           </li>
         </Typography>
       </Box>
