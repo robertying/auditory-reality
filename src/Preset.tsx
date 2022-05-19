@@ -22,10 +22,10 @@ const Preset: React.FC<PaperProps & { positions: Positions }> = ({
         {new Array(5).fill(0).map((v, i) => (
           <Paper
             sx={{
-              width: "2.5rem",
-              height: "2.5rem",
+              width: "2rem",
+              height: "2rem",
               position: "relative",
-              top: i === 0 || i === 4 ? "3rem" : undefined,
+              top: i === 0 || i === 4 ? "2.5rem" : undefined,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -43,7 +43,7 @@ const Preset: React.FC<PaperProps & { positions: Positions }> = ({
         ))}
       </Stack>
       <Box sx={{ display: "flex", justifyContent: "center", p: 1 }}>
-        <Person sx={{ fontSize: "2.5rem" }} />
+        <Person sx={{ fontSize: "2rem" }} />
       </Box>
     </Paper>
   );

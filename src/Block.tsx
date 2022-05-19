@@ -22,7 +22,7 @@ const Block: React.FC<
   return (
     <Paper {...restProps}>
       <Stack
-        sx={{ p: 2, height: "100%" }}
+        sx={{ p: 1, height: "100%" }}
         direction="column"
         alignItems="center"
         justifyContent="center"

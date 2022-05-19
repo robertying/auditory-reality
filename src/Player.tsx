@@ -14,25 +14,28 @@ const Player: React.FC<{ positions: Positions }> = ({ positions }) => {
 
   useEffect(() => {
     if (playing) {
-      document.querySelectorAll("audio").forEach((el) => el.play());
+      document.querySelectorAll("audio").forEach((el) => {
+        el.volume = 0.8;
+        el.play();
+      });
     } else {
       document.querySelectorAll("audio").forEach((el) => el.pause());
     }
   }, [playing]);
 
   return (
-    <Box sx={{ mb: 4 }}>
+    <Box sx={{ mb: 2 }}>
       <IconButton
         sx={{ alignSelf: "center" }}
         size="large"
-        aria-label={playing ? "pause audio" : "play audio"}
+        aria-label={playing ? "Pause Audio" : "Play Audio"}
         onClick={() => setPlaying((v) => !v)}
         onKeyDown={handleEnterKey}
       >
         {playing ? (
-          <PauseCircle fontSize="inherit" />
+          <PauseCircle sx={{ fontSize: "3rem" }} />
         ) : (
-          <PlayCircle fontSize="inherit" />
+          <PlayCircle sx={{ fontSize: "3rem" }} />
         )}
       </IconButton>
       {[0, 1, 2, 3, 4].map((i) => (
