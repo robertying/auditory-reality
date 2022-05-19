@@ -16,18 +16,23 @@ export interface Positions {
 const presets: Positions[] = [
   {
     presentation: 2,
+    chat: 2,
+    announcement: 2,
+  },
+  {
+    presentation: 2,
     chat: 4,
     announcement: 0,
   },
   {
     presentation: 2,
     chat: 4,
-    announcement: 1,
+    announcement: 4,
   },
   {
     presentation: 0,
     chat: 4,
-    announcement: 2,
+    announcement: 4,
   },
 ];
 
@@ -79,7 +84,7 @@ const Demo: React.FC = () => {
           break;
         case "ArrowLeft":
           if (presetMode) {
-            setSelectedPreset(Math.max(0, selectedPreset - 1));
+            setSelectedPreset((v) => (v === 0 ? 3 : v - 1));
             return;
           }
           if (sourceMoving) {
@@ -92,7 +97,7 @@ const Demo: React.FC = () => {
           break;
         case "ArrowRight":
           if (presetMode) {
-            setSelectedPreset(Math.min(2, selectedPreset + 1));
+            setSelectedPreset((v) => (v === 3 ? 0 : v + 1));
             return;
           }
           if (sourceMoving) {
@@ -138,7 +143,7 @@ const Demo: React.FC = () => {
   useEffect(() => {
     if (presetMode) {
       speak(
-        "Preset mode has been enabled. You can now use the Left Arrow key or Right Arrow key to change to another sound source position preset."
+        "Preset mode has been enabled. You can now use the Left Arrow key or Right Arrow key to cycle through sound layout presets."
       );
     } else {
       speak(
@@ -148,7 +153,7 @@ const Demo: React.FC = () => {
   }, [presetMode]);
 
   useEffect(() => {
-    speak("The sound source positions have been changed to another preset.");
+    speak(`Sound layout preset ${selectedPreset + 1} has been applied.`);
   }, [selectedPreset]);
 
   return (
@@ -156,7 +161,6 @@ const Demo: React.FC = () => {
       component="main"
       sx={{
         px: 8,
-        py: 2,
         flex: 1,
         display: "flex",
         flexDirection: "column",
@@ -187,7 +191,7 @@ const Demo: React.FC = () => {
         <Person sx={{ fontSize: "10rem" }} />
       </Box>
       <Box sx={{ justifySelf: "stretch", width: "100%", pb: 2 }}>
-        <Typography component="h2" variant="h4">
+        <Typography component="h2" variant="h6">
           Presets
           <Switch
             sx={{ ml: 1 }}
@@ -197,23 +201,18 @@ const Demo: React.FC = () => {
           />
         </Typography>
         {presetMode && (
-          <Stack
-            sx={{ mt: 2 }}
-            direction="row"
-            justifyContent="center"
-            spacing={4}
-          >
-            {new Array(3).fill(0).map((v, i) => (
+          <Stack direction="row" justifyContent="center" spacing={4}>
+            {presets.map((preset, i) => (
               <Preset
                 sx={{
-                  width: "16rem",
-                  height: "16rem",
+                  width: "12rem",
+                  height: "12rem",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
                 }}
                 key={i}
-                positions={presets[i]}
+                positions={preset}
                 elevation={0}
                 variant={i === selectedPreset ? "outlined" : "elevation"}
               />
